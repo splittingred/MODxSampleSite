@@ -60,6 +60,20 @@ if (is_array($templates)) {
     $category->addMany($templates,'Templates');
 } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding templates failed.'); }
 
+/* add chunks */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in chunks.'); flush();
+$chunks = include $sources['data'].'transport.chunks.php';
+if (is_array($chunks)) {
+    $category->addMany($chunks,'Chunks');
+} else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding chunks failed.'); }
+
+/* add snippets */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in snippets.'); flush();
+$snippets = include $sources['data'].'transport.snippets.php';
+if (is_array($snippets)) {
+    $category->addMany($snippets,'Snippets');
+} else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding snippets failed.'); }
+
 /* create base category vehicle */
 $attr = array(
     xPDOTransport::UNIQUE_KEY => 'category',
@@ -73,11 +87,6 @@ $attr = array(
             xPDOTransport::UNIQUE_KEY => 'category',
             xPDOTransport::RELATED_OBJECTS => true,
             xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-                'Templates' => array(
-                    xPDOTransport::PRESERVE_KEYS => false,
-                    xPDOTransport::UPDATE_OBJECT => true,
-                    xPDOTransport::UNIQUE_KEY => 'templatename',
-                ),
                 'Snippets' => array(
                     xPDOTransport::PRESERVE_KEYS => false,
                     xPDOTransport::UPDATE_OBJECT => true,
@@ -87,6 +96,27 @@ $attr = array(
                     xPDOTransport::PRESERVE_KEYS => false,
                     xPDOTransport::UPDATE_OBJECT => true,
                     xPDOTransport::UNIQUE_KEY => 'name',
+                ),
+                'Templates' => array(
+                    xPDOTransport::PRESERVE_KEYS => false,
+                    xPDOTransport::UPDATE_OBJECT => true,
+                    xPDOTransport::UNIQUE_KEY => 'templatename',
+                    xPDOTransport::RELATED_OBJECTS => true,
+                    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+                        'Resources' => array(
+                            xPDOTransport::PRESERVE_KEYS => true,
+                            xPDOTransport::UPDATE_OBJECT => true,
+                            xPDOTransport::UNIQUE_KEY => array('context_key','alias'),
+                            xPDOTransport::RELATED_OBJECTS => true,
+                            xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+                                'ContentType' => array(
+                                    xPDOTransport::PRESERVE_KEYS => true,
+                                    xPDOTransport::UPDATE_OBJECT => true,
+                                    xPDOTransport::UNIQUE_KEY => 'name',
+                                ),
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),
@@ -104,6 +134,22 @@ $attr = array(
             xPDOTransport::PRESERVE_KEYS => false,
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'templatename',
+            xPDOTransport::RELATED_OBJECTS => true,
+            xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+                'Resources' => array(
+                    xPDOTransport::PRESERVE_KEYS => true,
+                    xPDOTransport::UPDATE_OBJECT => true,
+                    xPDOTransport::UNIQUE_KEY => array('context_key','alias'),
+                    xPDOTransport::RELATED_OBJECTS => true,
+                    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+                        'ContentType' => array(
+                            xPDOTransport::PRESERVE_KEYS => true,
+                            xPDOTransport::UPDATE_OBJECT => true,
+                            xPDOTransport::UNIQUE_KEY => 'name',
+                        ),
+                    ),
+                ),
+            ),
         ),
     )
 );
@@ -113,6 +159,39 @@ $vehicle->resolve('file',array(
     'target' => "return MODX_ASSETS_PATH . 'components/';",
 ));
 $builder->putVehicle($vehicle);
+
+/* load system settings */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in system settings.'); flush();
+$settings = include_once $sources['data'].'transport.settings.php';
+if (!is_array($settings)) $modx->log(modX::LOG_LEVEL_FATAL,'No settings returned.');
+$attributes= array(
+    xPDOTransport::UNIQUE_KEY => 'key',
+    xPDOTransport::PRESERVE_KEYS => true,
+    xPDOTransport::UPDATE_OBJECT => false,
+);
+foreach ($settings as $setting) {
+    $vehicle = $builder->createVehicle($setting,$attributes);
+    $builder->putVehicle($vehicle);
+}
+unset($settings,$setting,$attributes);
+
+/* load no-template resources */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in no-template Resources.'); flush();
+$resources = include_once $sources['data'].'transport.resources.php';
+if (!is_array($resources)) $modx->log(modX::LOG_LEVEL_FATAL,'No resources returned.');
+$attributes= array(
+    xPDOTransport::PRESERVE_KEYS => true,
+    xPDOTransport::UPDATE_OBJECT => true,
+    xPDOTransport::UNIQUE_KEY => array('context_key','alias'),
+);
+foreach ($resources as $resource) {
+    $vehicle = $builder->createVehicle($resource,$attributes);
+    $builder->putVehicle($vehicle);
+}
+unset($resources,$resource,$attributes);
+
+
+
 
 /* now pack in the license file, readme and setup options */
 $builder->setPackageAttributes(array(

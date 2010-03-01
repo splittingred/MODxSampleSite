@@ -1,0 +1,1 @@
+[[ResetPassword? &loginResourceId=`18`]]

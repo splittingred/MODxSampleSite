@@ -1,0 +1,1 @@
+<li class="category [[+wf.classnames]]"><a href="[[+wf.link]]" title="[[+wf.title]]">[[+wf.linktext]]</a>[[+wf.wrapper]]</li>
