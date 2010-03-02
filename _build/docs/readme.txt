@@ -6,3 +6,13 @@ Since: February 2010
 Author: Shaun McCormick <shaun@collabpad.com>
 
 A demonstration sample site for MODx Revolution 2.0.0
+
+Dependencies:
+-------------
+- getResources
+- getPage
+- Quip
+- UltimateParent
+- Login
+- FormIt
+- Wayfinder

@@ -61,6 +61,9 @@
             <div class="post">
               <h2>[[*longtitle]]</h2>
               [[*content]]
+
+              [[*id:neq=`2`:then=`[[UltimateParent:eq=`2`:then=`<hr />[[$comments]]`]]`]]
+
             </div>
             <!-- close .post (main column content) -->
           </div>
