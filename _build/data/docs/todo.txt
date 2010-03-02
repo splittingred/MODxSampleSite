@@ -1,4 +1,0 @@
-Left todo:
-==========
-- Commenting
-- A real Search component (nix google search)

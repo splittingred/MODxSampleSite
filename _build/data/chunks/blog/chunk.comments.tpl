@@ -1,1 +1,0 @@
-[[Quip? &thread=`blogPost[[*id]]`]]

@@ -4,10 +4,10 @@
   <div class="ditto_info">
     By <strong>[[+createdby:userinfo=`fullname`]]</strong> on [[+publishedon:strtotime:date=`%b %d, %Y`]].
     
-    <a href="[[~[[+id]]]]#quip-topofcomments">Comments ([[QuipCount? &thread=`blogPost[[+id]]`]])</a>
+    <a href="[[~[[+id]]]]#quip-topofcomments">Comments ([[!QuipCount? &thread=`blogPost[[+id]]`]])</a>
   </div>
-  [[+tv.tags:notempty=`<div class="ditto_tags">Tags: [[tolinks? &items=`[[+tv.tags]]` &key=`tag`]]</div>`]]
+  [[+tv.tags:notempty=`<div class="ditto_tags">Tags: [[!tolinks? &items=`[[+tv.tags]]` &key=`tag`]]</div>`]]
   
-  [[+introtext:empty=`[[+content:limit=`200`]]`]]
+  [[+introtext:empty=`[[+content]]`]]
   <p class="ditto_link">[[+link]]</p>
 </div>

@@ -11,7 +11,7 @@
    &sortdir=`DESC`
    
    &showHidden=`1`
-   &includeTVs=`1`  
+   &includeTVs=`1`
    &includeContent=`1`  
   
    &tpl=`blogPost`  
