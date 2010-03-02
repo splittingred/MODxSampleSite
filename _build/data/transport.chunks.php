@@ -101,7 +101,7 @@ $snippets[13]->fromArray(array(
     'id' => 13,
     'name' => 'Logout',
     'description' => '',
-    'snippet' => file_get_contents($sources['data'].'chunks/chunk.logout.tpl'),
+    'snippet' => file_get_contents($sources['data'].'chunks/login/chunk.logout.tpl'),
 ),'',true,true);
 
 return $chunks;

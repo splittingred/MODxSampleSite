@@ -2,5 +2,6 @@ Left todo:
 ==========
 - A real Search component (nix google search)
 - Finish adding in Resources to modxhost build script
-- TV resolver
+- TV vehicle and resolver for 'tags' TV, as well as some demo data for one of the resources
+- Finish properties for BlogList property set
 - subpackages

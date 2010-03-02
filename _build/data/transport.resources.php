@@ -32,8 +32,6 @@ $resources[1]->fromArray(array(
         'headers' => null,
         'binary' => 0,
     ),'',true,true);
-    $resource->addOne($contentType);
-
-$templates[1]->addMany($resources);
+    $resources[1]->addOne($contentType);
 
 return $resources;

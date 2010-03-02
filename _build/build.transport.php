@@ -48,6 +48,51 @@ $builder = new modPackageBuilder($modx);
 $builder->createPackage(PKG_ABBR,PKG_VERSION,PKG_RELEASE);
 $builder->registerNamespace(PKG_ABBR,false,true,'{core_path}components/'.PKG_ABBR.'/');
 
+/* load no-template resources */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in no-template Resources.'); flush();
+$resources = include_once $sources['data'].'transport.resources.php';
+if (!is_array($resources)) $modx->log(modX::LOG_LEVEL_FATAL,'No resources returned.');
+$attributes= array(
+    xPDOTransport::PRESERVE_KEYS => true,
+    xPDOTransport::UPDATE_OBJECT => true,
+    xPDOTransport::UNIQUE_KEY => array('context_key','alias'),
+);
+foreach ($resources as $resource) {
+    $vehicle = $builder->createVehicle($resource,$attributes);
+    $builder->putVehicle($vehicle);
+}
+unset($resources,$resource,$attributes);
+
+/* load system settings */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in system settings.'); flush();
+$settings = include_once $sources['data'].'transport.settings.php';
+if (!is_array($settings)) $modx->log(modX::LOG_LEVEL_FATAL,'No settings returned.');
+$attributes= array(
+    xPDOTransport::UNIQUE_KEY => 'key',
+    xPDOTransport::PRESERVE_KEYS => true,
+    xPDOTransport::UPDATE_OBJECT => false,
+);
+foreach ($settings as $setting) {
+    $vehicle = $builder->createVehicle($setting,$attributes);
+    $builder->putVehicle($vehicle);
+}
+unset($settings,$setting,$attributes);
+
+/* load property sets */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in property sets.'); flush();
+$propertySets = include_once $sources['data'].'propertysets/transport.propertysets.php';
+if (!is_array($propertySets)) $modx->log(modX::LOG_LEVEL_FATAL,'No property sets returned.');
+$attributes= array(
+    xPDOTransport::UNIQUE_KEY => 'name',
+    xPDOTransport::PRESERVE_KEYS => false,
+    xPDOTransport::UPDATE_OBJECT => true,
+);
+foreach ($propertySets as $propertySet) {
+    $vehicle = $builder->createVehicle($propertySet,$attributes);
+    $builder->putVehicle($vehicle);
+}
+unset($propertySets,$propertySet,$attributes);
+
 /* create category */
 $category= $modx->newObject('modCategory');
 $category->set('id',1);
@@ -158,39 +203,10 @@ $vehicle->resolve('file',array(
     'source' => $sources['source_assets'],
     'target' => "return MODX_ASSETS_PATH . 'components/';",
 ));
+$vehicle->resolve('php',array(
+    'source' => $sources['resolvers'] . 'resolve.propertysets.php',
+));
 $builder->putVehicle($vehicle);
-
-/* load system settings */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in system settings.'); flush();
-$settings = include_once $sources['data'].'transport.settings.php';
-if (!is_array($settings)) $modx->log(modX::LOG_LEVEL_FATAL,'No settings returned.');
-$attributes= array(
-    xPDOTransport::UNIQUE_KEY => 'key',
-    xPDOTransport::PRESERVE_KEYS => true,
-    xPDOTransport::UPDATE_OBJECT => false,
-);
-foreach ($settings as $setting) {
-    $vehicle = $builder->createVehicle($setting,$attributes);
-    $builder->putVehicle($vehicle);
-}
-unset($settings,$setting,$attributes);
-
-/* load no-template resources */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in no-template Resources.'); flush();
-$resources = include_once $sources['data'].'transport.resources.php';
-if (!is_array($resources)) $modx->log(modX::LOG_LEVEL_FATAL,'No resources returned.');
-$attributes= array(
-    xPDOTransport::PRESERVE_KEYS => true,
-    xPDOTransport::UPDATE_OBJECT => true,
-    xPDOTransport::UNIQUE_KEY => array('context_key','alias'),
-);
-foreach ($resources as $resource) {
-    $vehicle = $builder->createVehicle($resource,$attributes);
-    $builder->putVehicle($vehicle);
-}
-unset($resources,$resource,$attributes);
-
-
 
 
 /* now pack in the license file, readme and setup options */
