@@ -29,6 +29,8 @@ $sources= array (
     'root' => $root,
     'build' => $root .'_build/',
     'resolvers' => $root . '_build/resolvers/',
+    'validators' => $root . '_build/validators/',
+    'subpackages' => $root . '_build/subpackages/',
     'data' => $root . '_build/data/',
     'properties' => $root . '_build/properties/',
     'source_core' => $root.'core/components/'.PKG_ABBR,
@@ -118,6 +120,12 @@ $snippets = include $sources['data'].'transport.snippets.php';
 if (is_array($snippets)) {
     $category->addMany($snippets,'Snippets');
 } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding snippets failed.'); }
+
+/* add subpackages */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in subpackages.'); flush();
+$success = include $sources['data'].'transport.subpackages.php';
+if (!$success) { $modx->log(modX::LOG_LEVEL_FATAL,'Adding subpackages failed.'); }
+
 
 /* create base category vehicle */
 $attr = array(
