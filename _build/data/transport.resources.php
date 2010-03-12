@@ -14,7 +14,7 @@ $resources[16]->fromArray(array(
     'longtitle' => '',
     'description' => '',
     'parent' => 0,
-    'alias' => '',
+    'alias' => 'rss',
     'content' => file_get_contents($pages.'rss.tpl'),
     'isfolder' => false,
     'published' => true,
