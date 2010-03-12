@@ -3,6 +3,6 @@
   <h2>[[*longtitle]]</h2>
   [[*content]]
 
-  <hr />[[$comments]]
+  <hr />[[!Quip? &thread=`blogPost[[*id]]`]]
 </div>
 [[$footer]]

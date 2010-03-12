@@ -1,3 +1,0 @@
-Left todo:
-==========
-- Test build script!

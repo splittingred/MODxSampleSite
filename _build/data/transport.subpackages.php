@@ -9,7 +9,7 @@ $subpackages = array(
     'getpage'        => 'getpage-1.0.0-beta2',
     'getresources'   => 'getresources-1.0.0-ga',
     'login'          => 'login-1.0-rc3',
-    'quip'           => 'quip-0.3-rc1',
+    'quip'           => 'quip-0.3-rc2',
     'ultimateparent' => 'ultimateparent-1.4-beta2',
     'wayfinder'       => 'wayfinder-2.1.1-beta4',
 );
