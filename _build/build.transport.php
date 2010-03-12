@@ -61,7 +61,7 @@ $attributes= array(
     xPDOTransport::RELATED_OBJECTS => true,
     xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
         'ContentType' => array(
-            xPDOTransport::PRESERVE_KEYS => true,
+            xPDOTransport::PRESERVE_KEYS => false,
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'name',
         ),
@@ -80,7 +80,7 @@ if (!is_array($settings)) $modx->log(modX::LOG_LEVEL_FATAL,'No settings returned
 $attributes= array(
     xPDOTransport::UNIQUE_KEY => 'key',
     xPDOTransport::PRESERVE_KEYS => true,
-    xPDOTransport::UPDATE_OBJECT => false,
+    xPDOTransport::UPDATE_OBJECT => true,
 );
 foreach ($settings as $setting) {
     $vehicle = $builder->createVehicle($setting,$attributes);
@@ -156,17 +156,17 @@ $attr = array(
             xPDOTransport::RELATED_OBJECTS => true,
             xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
                 'Snippets' => array(
-                    xPDOTransport::PRESERVE_KEYS => false,
+                    xPDOTransport::PRESERVE_KEYS => true,
                     xPDOTransport::UPDATE_OBJECT => true,
                     xPDOTransport::UNIQUE_KEY => 'name',
                 ),
                 'Chunks' => array(
-                    xPDOTransport::PRESERVE_KEYS => false,
+                    xPDOTransport::PRESERVE_KEYS => true,
                     xPDOTransport::UPDATE_OBJECT => true,
                     xPDOTransport::UNIQUE_KEY => 'name',
                 ),
                 'Templates' => array(
-                    xPDOTransport::PRESERVE_KEYS => false,
+                    xPDOTransport::PRESERVE_KEYS => true,
                     xPDOTransport::UPDATE_OBJECT => true,
                     xPDOTransport::UNIQUE_KEY => 'templatename',
                     xPDOTransport::RELATED_OBJECTS => true,
@@ -187,14 +187,14 @@ $attr = array(
                     ),
                 ),
                 'TemplateVars' => array(
-                    xPDOTransport::PRESERVE_KEYS => false,
+                    xPDOTransport::PRESERVE_KEYS => true,
                     xPDOTransport::UPDATE_OBJECT => true,
                     xPDOTransport::UNIQUE_KEY => 'name',
                     xPDOTransport::RELATED_OBJECTS => true,
                     xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
                         'TemplateVarResources' => array(
                             xPDOTransport::PRESERVE_KEYS => false,
-                            xPDOTransport::UPDATE_OBJECT => false,
+                            xPDOTransport::UPDATE_OBJECT => true,
                             xPDOTransport::UNIQUE_KEY => array('templvarid','contentid'),
                         ),
                     ),
@@ -202,17 +202,17 @@ $attr = array(
             ),
         ),
         'Snippets' => array(
-            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::PRESERVE_KEYS => true,
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'name',
         ),
         'Chunks' => array(
-            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::PRESERVE_KEYS => true,
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'name',
         ),
         'Templates' => array(
-            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::PRESERVE_KEYS => true,
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'templatename',
             xPDOTransport::RELATED_OBJECTS => true,
@@ -224,7 +224,7 @@ $attr = array(
                     xPDOTransport::RELATED_OBJECTS => true,
                     xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
                         'ContentType' => array(
-                            xPDOTransport::PRESERVE_KEYS => true,
+                            xPDOTransport::PRESERVE_KEYS => false,
                             xPDOTransport::UPDATE_OBJECT => true,
                             xPDOTransport::UNIQUE_KEY => 'name',
                         ),
