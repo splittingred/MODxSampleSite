@@ -50,29 +50,6 @@ $builder = new modPackageBuilder($modx);
 $builder->createPackage(PKG_ABBR,PKG_VERSION,PKG_RELEASE);
 $builder->registerNamespace(PKG_ABBR,false,true,'{core_path}components/'.PKG_ABBR.'/');
 
-/* load no-template resources */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in no-template Resources.'); flush();
-$resources = include_once $sources['data'].'transport.resources.php';
-if (!is_array($resources)) $modx->log(modX::LOG_LEVEL_FATAL,'No resources returned.');
-$attributes= array(
-    xPDOTransport::PRESERVE_KEYS => true,
-    xPDOTransport::UPDATE_OBJECT => true,
-    xPDOTransport::UNIQUE_KEY => array('context_key','alias'),
-    xPDOTransport::RELATED_OBJECTS => true,
-    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-        'ContentType' => array(
-            xPDOTransport::PRESERVE_KEYS => false,
-            xPDOTransport::UPDATE_OBJECT => true,
-            xPDOTransport::UNIQUE_KEY => 'name',
-        ),
-    ),
-);
-foreach ($resources as $resource) {
-    $vehicle = $builder->createVehicle($resource,$attributes);
-    $builder->putVehicle($vehicle);
-}
-unset($resources,$resource,$attributes);
-
 /* load system settings */
 $modx->log(modX::LOG_LEVEL_INFO,'Adding in system settings.'); flush();
 $settings = include_once $sources['data'].'transport.settings.php';
@@ -144,93 +121,25 @@ if (!$success) { $modx->log(modX::LOG_LEVEL_FATAL,'Adding subpackages failed.');
 
 /* create base category vehicle */
 $attr = array(
-    xPDOTransport::UNIQUE_KEY => 'category',
-    xPDOTransport::PRESERVE_KEYS => false,
+    xPDOTransport::PRESERVE_KEYS => true,
     xPDOTransport::UPDATE_OBJECT => true,
     xPDOTransport::RELATED_OBJECTS => true,
     xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-        'Children' => array(
-            xPDOTransport::PRESERVE_KEYS => false,
-            xPDOTransport::UPDATE_OBJECT => true,
-            xPDOTransport::UNIQUE_KEY => 'category',
-            xPDOTransport::RELATED_OBJECTS => true,
-            xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-                'Snippets' => array(
-                    xPDOTransport::PRESERVE_KEYS => true,
-                    xPDOTransport::UPDATE_OBJECT => true,
-                    xPDOTransport::UNIQUE_KEY => 'name',
-                ),
-                'Chunks' => array(
-                    xPDOTransport::PRESERVE_KEYS => true,
-                    xPDOTransport::UPDATE_OBJECT => true,
-                    xPDOTransport::UNIQUE_KEY => 'name',
-                ),
-                'Templates' => array(
-                    xPDOTransport::PRESERVE_KEYS => true,
-                    xPDOTransport::UPDATE_OBJECT => true,
-                    xPDOTransport::UNIQUE_KEY => 'templatename',
-                    xPDOTransport::RELATED_OBJECTS => true,
-                    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-                        'Resources' => array(
-                            xPDOTransport::PRESERVE_KEYS => true,
-                            xPDOTransport::UPDATE_OBJECT => true,
-                            xPDOTransport::UNIQUE_KEY => array('context_key','alias'),
-                            xPDOTransport::RELATED_OBJECTS => true,
-                            xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-                                'ContentType' => array(
-                                    xPDOTransport::PRESERVE_KEYS => true,
-                                    xPDOTransport::UPDATE_OBJECT => true,
-                                    xPDOTransport::UNIQUE_KEY => 'name',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'TemplateVars' => array(
-                    xPDOTransport::PRESERVE_KEYS => true,
-                    xPDOTransport::UPDATE_OBJECT => true,
-                    xPDOTransport::UNIQUE_KEY => 'name',
-                    xPDOTransport::RELATED_OBJECTS => true,
-                    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-                        'TemplateVarResources' => array(
-                            xPDOTransport::PRESERVE_KEYS => false,
-                            xPDOTransport::UPDATE_OBJECT => true,
-                            xPDOTransport::UNIQUE_KEY => array('templvarid','contentid'),
-                        ),
-                    ),
-                ),
-            ),
-        ),
         'Snippets' => array(
             xPDOTransport::PRESERVE_KEYS => true,
             xPDOTransport::UPDATE_OBJECT => true,
-            xPDOTransport::UNIQUE_KEY => 'name',
         ),
         'Chunks' => array(
             xPDOTransport::PRESERVE_KEYS => true,
             xPDOTransport::UPDATE_OBJECT => true,
-            xPDOTransport::UNIQUE_KEY => 'name',
         ),
         'Templates' => array(
             xPDOTransport::PRESERVE_KEYS => true,
             xPDOTransport::UPDATE_OBJECT => true,
-            xPDOTransport::UNIQUE_KEY => 'templatename',
-            xPDOTransport::RELATED_OBJECTS => true,
-            xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-                'Resources' => array(
-                    xPDOTransport::PRESERVE_KEYS => true,
-                    xPDOTransport::UPDATE_OBJECT => true,
-                    xPDOTransport::UNIQUE_KEY => array('context_key','alias'),
-                    xPDOTransport::RELATED_OBJECTS => true,
-                    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-                        'ContentType' => array(
-                            xPDOTransport::PRESERVE_KEYS => false,
-                            xPDOTransport::UPDATE_OBJECT => true,
-                            xPDOTransport::UNIQUE_KEY => 'name',
-                        ),
-                    ),
-                ),
-            ),
+        ),
+        'TemplateVars' => array(
+            xPDOTransport::PRESERVE_KEYS => true,
+            xPDOTransport::UPDATE_OBJECT => true,
         ),
     )
 );
@@ -245,13 +154,39 @@ $vehicle->resolve('php',array(
 $vehicle->resolve('php',array(
     'source' => $sources['resolvers'] . 'resolve.tv.template.php',
 ));
+$vehicle->resolve('php',array(
+    'source' => $sources['resolvers'] . 'resolve.tv.resource.php',
+));
 $builder->putVehicle($vehicle);
 
+/* load resources */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in Resources.'); flush();
+$resources = include_once $sources['data'].'transport.resources.php';
+if (!is_array($resources)) $modx->log(modX::LOG_LEVEL_FATAL,'No resources returned.');
+$attributes= array(
+    xPDOTransport::PRESERVE_KEYS => true,
+    xPDOTransport::UPDATE_OBJECT => true,
+    xPDOTransport::UNIQUE_KEY => 'id',
+    xPDOTransport::RELATED_OBJECTS => true,
+    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+        'ContentType' => array(
+            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::UPDATE_OBJECT => true,
+            xPDOTransport::UNIQUE_KEY => 'name',
+        ),
+    ),
+);
+foreach ($resources as $resource) {
+    $vehicle = $builder->createVehicle($resource,$attributes);
+    $builder->putVehicle($vehicle);
+}
+unset($resources,$resource,$attributes);
 
 /* now pack in the license file, readme and setup options */
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
+    //'setup-options' => '<blink style="color: red"><h3>Note: Installing this will erase any prior content you have installed.</h3></blink>',
 ));
 
 $builder->pack();

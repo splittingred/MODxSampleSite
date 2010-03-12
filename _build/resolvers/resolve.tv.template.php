@@ -25,6 +25,7 @@ if ($object && $object->xpdo) {
                     continue;
                 }
 
+                $rank = 0;
                 foreach ($templateNames as $templateName) {
                     $template = $modx->getObject('modTemplate',array('templatename' => $templateName));
 
@@ -49,6 +50,7 @@ if ($object && $object->xpdo) {
                     } else {
                         $modx->log(xPDO::LOG_LEVEL_ERROR,'Could not find Template '.$templateName);
                     }
+                    $rank++;
                 }
             }
             break;
