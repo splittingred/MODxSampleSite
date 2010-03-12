@@ -5,7 +5,7 @@
  * @package modxss
  * @subpackage build
  */
-if ($object->xpdo) {
+if ($object && $object->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:

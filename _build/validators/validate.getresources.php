@@ -5,10 +5,12 @@
  * @package modxss
  */
 $newer= true;
-if ($transport->xpdo) {
+if ($transport && $transport->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
+            $modx =& $transport->xpdo;
+
             /* define getResources version */
             $newVersion = '1.0.0-pl';
             $newVersionMajor = '1';

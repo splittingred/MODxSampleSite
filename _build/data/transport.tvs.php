@@ -8,7 +8,7 @@ $tvs = array();
 $tvs[1]= $modx->newObject('modTemplateVar');
 $tvs[1]->fromArray(array(
     'id' => 1,
-    'templatename' => 'tags',
+    'name' => 'tags',
     'caption' => 'Tags',
     'description' => 'Space delimited tags for the current Resource',
     'type' => 'text',
