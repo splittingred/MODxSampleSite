@@ -108,7 +108,7 @@ $chunks[14]->fromArray(array(
     'id' => 14,
     'name' => 'MostRecent',
     'description' => '',
-    'snippet' => file_get_contents($sources['data'].'chunks/blog/chunk.mostrecent.tpl'),
+    'snippet' => file_get_contents($sources['data'].'chunks/chunk.mostrecent.tpl'),
 ),'',true,true);
 
 return $chunks;
