@@ -36,6 +36,6 @@ $resources[16]->fromArray(array(
         'headers' => null,
         'binary' => 0,
     ),'',true,true);
-    $resources[1]->addOne($contentType);
+    $resources[16]->addOne($contentType);
 
 return $resources;

@@ -5,11 +5,18 @@
  */
 $tvs = array();
 
-$tvs[1]= $modx->newObject('modTemplate');
+$tvs[1]= $modx->newObject('modTemplateVar');
 $tvs[1]->fromArray(array(
     'id' => 1,
     'templatename' => 'tags',
-    'description' => '',
+    'caption' => 'Tags',
+    'description' => 'Space delimited tags for the current Resource',
+    'type' => 'text',
+    'display' => 'default',
+    'locked' => 0,
+    'rank' => 0,
+    'default_text' => '',
+    'display_params' => '',
 ),'',true,true);
 
 /* adding tv values for resources */
