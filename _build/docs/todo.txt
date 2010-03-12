@@ -1,5 +1,3 @@
 Left todo:
 ==========
-- TV resolver for 'tags' TV to set Template Access
-- Finish properties for BlogList property set
 - Test build script!

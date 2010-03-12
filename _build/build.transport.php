@@ -121,7 +121,7 @@ if (is_array($snippets)) {
     $category->addMany($snippets,'Snippets');
 } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding snippets failed.'); }
 
-/* add snippets */
+/* add tvs */
 $modx->log(modX::LOG_LEVEL_INFO,'Adding in tvs.'); flush();
 $tvs = include $sources['data'].'transport.tvs.php';
 if (is_array($tvs)) {
@@ -233,6 +233,9 @@ $vehicle->resolve('file',array(
 ));
 $vehicle->resolve('php',array(
     'source' => $sources['resolvers'] . 'resolve.propertysets.php',
+));
+$vehicle->resolve('php',array(
+    'source' => $sources['resolvers'] . 'resolve.tv.template.php',
 ));
 $builder->putVehicle($vehicle);
 
