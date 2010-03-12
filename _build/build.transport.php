@@ -121,6 +121,13 @@ if (is_array($snippets)) {
     $category->addMany($snippets,'Snippets');
 } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding snippets failed.'); }
 
+/* add snippets */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in tvs.'); flush();
+$tvs = include $sources['data'].'transport.tvs.php';
+if (is_array($tvs)) {
+    $category->addMany($tvs,'TemplateVars');
+} else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding tvs failed.'); }
+
 /* add subpackages */
 $modx->log(modX::LOG_LEVEL_INFO,'Adding in subpackages.'); flush();
 $success = include $sources['data'].'transport.subpackages.php';
@@ -168,6 +175,19 @@ $attr = array(
                                     xPDOTransport::UNIQUE_KEY => 'name',
                                 ),
                             ),
+                        ),
+                    ),
+                ),
+                'TemplateVars' => array(
+                    xPDOTransport::PRESERVE_KEYS => false,
+                    xPDOTransport::UPDATE_OBJECT => true,
+                    xPDOTransport::UNIQUE_KEY => 'name',
+                    xPDOTransport::RELATED_OBJECTS => true,
+                    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+                        'TemplateVarResources' => array(
+                            xPDOTransport::PRESERVE_KEYS => false,
+                            xPDOTransport::UPDATE_OBJECT => false,
+                            xPDOTransport::UNIQUE_KEY => array('templvarid','contentid'),
                         ),
                     ),
                 ),

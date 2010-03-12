@@ -1,5 +1,5 @@
 Left todo:
 ==========
-- Finish adding in Resources to modxhost build script
-- TV vehicle and resolver for 'tags' TV, as well as some demo data for one of the resources
+- TV resolver for 'tags' TV to set Template Access
 - Finish properties for BlogList property set
+- Test build script!

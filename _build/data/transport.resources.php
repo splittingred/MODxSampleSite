@@ -7,9 +7,9 @@
 $resources = array();
 $pages = $sources['data'].'resources/';
 
-$resources[1] = $modx->newObject('modResource');
-$resources[1]->fromArray(array(
-    'id' => 1,
+$resources[16] = $modx->newObject('modResource');
+$resources[16]->fromArray(array(
+    'id' => 16,
     'pagetitle' => 'RSS Feed',
     'longtitle' => '',
     'description' => '',
@@ -20,7 +20,11 @@ $resources[1]->fromArray(array(
     'published' => true,
     'hidemenu' => false,
     'cacheable' => true,
+    'searchable' => false,
+    'richtext' => false,
     'context_key' => 'web',
+    'menuindex' => 9,
+    'menutitle' => 'RSS Feed',
 ),'',true,true);
     $contentType = $modx->newObject('modContentType');
     $contentType->fromArray(array(
