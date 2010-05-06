@@ -40,7 +40,7 @@ set_time_limit(0);
 define('PKG_ABBR','modxss');
 define('PKG_NAME','MODx Sample Site');
 define('PKG_VERSION','1.0');
-define('PKG_RELEASE','alpha1');
+define('PKG_RELEASE','alpha2');
 
 /* override with your own defines here (see build.config.sample.php) */
 require_once dirname(__FILE__) . '/build.config.php';
@@ -60,7 +60,6 @@ $sources= array (
     'properties' => $root . '_build/properties/',
     'source_core' => $root.'core/components/'.PKG_ABBR,
     'source_assets' => $root.'assets/components/'.PKG_ABBR,
-    'lexicon' => $root.'_build/lexicon/',
     'docs' => $root.'_build/docs/',
 );
 unset($root);

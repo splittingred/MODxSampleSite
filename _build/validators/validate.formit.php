@@ -37,7 +37,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define formit version */
-            $newVersion = '1.0-rc2';
+            $newVersion = '1.1-rc2';
             $newVersionMajor = '1';
             $name = 'formit';
 

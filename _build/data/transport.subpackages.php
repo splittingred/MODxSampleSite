@@ -5,11 +5,11 @@
  * @package modxss
  */
 $subpackages = array(
-    'formit'         => 'formit-1.0-rc2',
+    'formit'         => 'formit-1.1-rc2',
     'getpage'        => 'getpage-1.0.0-beta2',
     'getresources'   => 'getresources-1.0.0-ga',
-    'login'          => 'login-1.0-rc3',
-    'quip'           => 'quip-0.3-rc2',
+    'login'          => 'login-1.0.1-pl',
+    'quip'           => 'quip-0.5-beta2',
     'ultimateparent' => 'ultimateparent-1.4-beta2',
     'wayfinder'       => 'wayfinder-2.1.1-beta4',
 );
