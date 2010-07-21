@@ -37,7 +37,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define UltimateParent version */
-            $newVersion = '1.4-beta2';
+            $newVersion = '1.4-pl';
             $newVersionMajor = '1';
             $name = 'ultimateparent';
 

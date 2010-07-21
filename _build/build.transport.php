@@ -40,7 +40,7 @@ set_time_limit(0);
 define('PKG_ABBR','modxss');
 define('PKG_NAME','MODx Sample Site');
 define('PKG_VERSION','1.0');
-define('PKG_RELEASE','alpha2');
+define('PKG_RELEASE','beta1');
 
 /* override with your own defines here (see build.config.sample.php) */
 require_once dirname(__FILE__) . '/build.config.php';
@@ -142,6 +142,28 @@ $modx->log(modX::LOG_LEVEL_INFO,'Adding in subpackages.'); flush();
 $success = include $sources['data'].'transport.subpackages.php';
 if (!$success) { $modx->log(modX::LOG_LEVEL_FATAL,'Adding subpackages failed.'); }
 
+/* load resources */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in Resources.'); flush();
+$resources = include_once $sources['data'].'transport.resources.php';
+if (!is_array($resources)) $modx->log(modX::LOG_LEVEL_FATAL,'No resources returned.');
+$attributes= array(
+    xPDOTransport::PRESERVE_KEYS => true,
+    xPDOTransport::UPDATE_OBJECT => true,
+    xPDOTransport::UNIQUE_KEY => 'id',
+    xPDOTransport::RELATED_OBJECTS => true,
+    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+        'ContentType' => array(
+            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::UPDATE_OBJECT => true,
+            xPDOTransport::UNIQUE_KEY => 'name',
+        ),
+    ),
+);
+foreach ($resources as $resource) {
+    $vehicle = $builder->createVehicle($resource,$attributes);
+    $builder->putVehicle($vehicle);
+}
+unset($resources,$resource,$attributes);
 
 /* create base category vehicle */
 $attr = array(
@@ -182,29 +204,6 @@ $vehicle->resolve('php',array(
     'source' => $sources['resolvers'] . 'resolve.tv.resource.php',
 ));
 $builder->putVehicle($vehicle);
-
-/* load resources */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in Resources.'); flush();
-$resources = include_once $sources['data'].'transport.resources.php';
-if (!is_array($resources)) $modx->log(modX::LOG_LEVEL_FATAL,'No resources returned.');
-$attributes= array(
-    xPDOTransport::PRESERVE_KEYS => true,
-    xPDOTransport::UPDATE_OBJECT => true,
-    xPDOTransport::UNIQUE_KEY => 'id',
-    xPDOTransport::RELATED_OBJECTS => true,
-    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-        'ContentType' => array(
-            xPDOTransport::PRESERVE_KEYS => false,
-            xPDOTransport::UPDATE_OBJECT => true,
-            xPDOTransport::UNIQUE_KEY => 'name',
-        ),
-    ),
-);
-foreach ($resources as $resource) {
-    $vehicle = $builder->createVehicle($resource,$attributes);
-    $builder->putVehicle($vehicle);
-}
-unset($resources,$resource,$attributes);
 
 /* now pack in the license file, readme and setup options */
 $builder->setPackageAttributes(array(

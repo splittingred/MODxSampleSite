@@ -39,8 +39,8 @@ if ($object && $object->xpdo) {
             /* list of tvs and resourceIDs/values for each */
             $tvs = array(
                 'tags' => array(
-                    '6' => 'demo blog posting',
-                    '7' => 'older',
+                    '6' => 'Demo,Blog, Fun Stuff',
+                    '7' => 'Older Posts',
                 ),
             );
 

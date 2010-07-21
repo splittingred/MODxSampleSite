@@ -11,6 +11,6 @@
                 
         <input type="submit" value="[[+actionMsg]]" name="Login" class="button" />
         
-        <a href="#" class="forgotpsswd">Forget Your Password?</a>
+        <a href="[[~19]]" class="forgotpsswd">Forget Your Password?</a>
     </fieldset>
 </form>

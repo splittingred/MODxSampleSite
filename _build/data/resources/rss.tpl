@@ -6,7 +6,7 @@
             <language>en</language> 
             <copyright>[[++site_name]] 2010</copyright> 
             <ttl>120</ttl> 
-[[getResources?
+[[!getResources?
     &parents=`2`
     &limit=`20`
     &tpl=`rssItem`

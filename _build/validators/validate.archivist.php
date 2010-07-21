@@ -25,7 +25,7 @@
  * @package modxss
  */
 /**
- * Verify Quip is latest or equal in version
+ * Verify Archivist is latest or equal in version
  *
  * @package modxss
  */
@@ -36,10 +36,10 @@ if ($transport && $transport->xpdo) {
         case xPDOTransport::ACTION_UPGRADE:
             $modx =& $transport->xpdo;
 
-            /* define Quip version */
+            /* define Archivist version */
             $newVersion = '1.0.0-pl';
             $newVersionMajor = '1';
-            $name = 'quip';
+            $name = 'archivist';
 
             /* now loop through packages and check for newer versions
              * Do not install if newer or equal versions are found */

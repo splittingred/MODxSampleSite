@@ -1,7 +1,8 @@
 Changelog for MODx Sample Site.
 
-MODxSS 1.0 ($LastChangedRevision$, $LastChangedDate$)
+MODxSS 1.0
 ====================================
+- Updated to Revo 2.0.0-pl standards
 - Added license information, adjusted template, prepared for release 
 - Updated Quip to latest version
 - Lots of bugfixes to build script

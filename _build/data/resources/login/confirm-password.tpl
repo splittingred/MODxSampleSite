@@ -1,1 +1,1 @@
-[[ResetPassword? &loginResourceId=`18`]]
+[[!ResetPassword? &loginResourceId=`18`]]

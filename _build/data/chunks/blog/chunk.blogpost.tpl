@@ -6,7 +6,7 @@
     
     <a href="[[~[[+id]]]]#quip-topofcomments">Comments ([[!QuipCount? &thread=`blogPost[[+id]]`]])</a>
   </div>
-  [[+tv.tags:notempty=`<div class="ditto_tags">Tags: [[!tolinks? &items=`[[+tv.tags]]` &key=`tag`]]</div>`]]
+  [[+tv.tags:notempty=`<div class="ditto_tags">Tags: [[!tolinks? &items=`[[+tv.tags]]` &key=`tag` &target=`2`]]</div>`]]
   
   [[+introtext:empty=`[[+content]]`]]
   <p class="ditto_link">[[+link]]</p>

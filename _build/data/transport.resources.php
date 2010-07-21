@@ -71,7 +71,7 @@ $resources[2]->fromArray(array(
     'published' => true,
     'hidemenu' => false,
     'cacheable' => true,
-    'searchable' => true,
+    'searchable' => false,
     'richtext' => true,
     'context_key' => 'web',
     'menuindex' => 1,
@@ -139,7 +139,7 @@ $resources[5]->fromArray(array(
     'isfolder' => false,
     'published' => true,
     'hidemenu' => true,
-    'searchable' => true,
+    'searchable' => false,
     'cacheable' => true,
     'richtext' => true,
     'context_key' => 'web',
@@ -155,7 +155,7 @@ $resources[6]->fromArray(array(
     'pagetitle' => 'Mini-Blog HOWTO',
     'longtitle' => 'How to Start Posting with MODx Mini-Blogs',
     'description' => '',
-    'introtext' => '',
+    'introtext' => 'Adding a blog post to MODx is absurdly easy. This how-to shows you how.',
     'alias' => 'article-1126081344',
     'link_attributes' => '',
     'content' => file_get_contents($pages.'blog/mini-howto.tpl'),
@@ -180,7 +180,7 @@ $resources[7]->fromArray(array(
     'longtitle' => 'This post should in fact be archived',
     'description' => '',
     'introtext' => '',
-    'alias' => 'article-1128398162',
+    'alias' => 'just-a-pretend-older-post',
     'link_attributes' => '',
     'content' => file_get_contents($pages.'blog/olderpost.tpl'),
     'publishedon' => strftime('%Y-%m-%d %H:%M:%S'),
@@ -398,18 +398,9 @@ $resources[16]->fromArray(array(
     'context_key' => 'web',
     'menuindex' => 9,
     'menutitle' => 'RSS Feed',
+    'content_type' => 6,
+    'contentType' => 'text/xml',
 ),'',true,true);
-    $contentType = $modx->newObject('modContentType');
-    $contentType->fromArray(array(
-        'id' => 1,
-        'name' => 'RSS',
-        'description' => 'For RSS feeds',
-        'mime_type' => 'text/xml',
-        'file_extensions' => '.rss',
-        'headers' => null,
-        'binary' => 0,
-    ),'',true,true);
-    $resources[16]->addOne($contentType);
 
 
 $resources[17] = $modx->newObject('modResource');
@@ -479,6 +470,30 @@ $resources[19]->fromArray(array(
     'context_key' => 'web',
     'menuindex' => 1,
     'menutitle' => 'Retrieve Password',
+),'',true,true);
+
+
+$resources[19] = $modx->newObject('modResource');
+$resources[19]->fromArray(array(
+    'id' => 19,
+    'parent' => 0,
+    'template' => 1,
+    'pagetitle' => 'Archives',
+    'longtitle' => '',
+    'description' => '',
+    'introtext' => '',
+    'alias' => 'archives',
+    'link_attributes' => '',
+    'content' => file_get_contents($pages.'archives.tpl'),
+    'isfolder' => true,
+    'published' => true,
+    'hidemenu' => true,
+    'searchable' => false,
+    'cacheable' => true,
+    'richtext' => false,
+    'context_key' => 'web',
+    'menuindex' => 11,
+    'menutitle' => 'Archives',
 ),'',true,true);
 
 return $resources;

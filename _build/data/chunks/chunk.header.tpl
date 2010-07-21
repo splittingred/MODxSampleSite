@@ -34,7 +34,7 @@
               <a name="recentdocs"></a>
               <ul class="LIn_shortMode">
                 [[getResources?
-                    &parents=`0`
+                    &parents=`2`
                     &limit=`3`
                     &showHidden=`1`
                     &tpl=`MostRecent`
@@ -43,6 +43,15 @@
                 ]]
                 </ul>
               </div>
+              <h2>Archives</h2>
+              <ul class="LIn_shortMode">
+              [[!Archivist? &target=`20` &parents=`2`]]
+              </ul>
+
+<h2>Tags</h2>
+[[!tagLister? &tv=`tags` &target=`2`]]
+
+
               <h2>Login:</h2>
               <div id="sidebarlogin">[[!Login? &loginTpl=`FormLogin` &logoutTpl=`Logout`]]</div>
               <h2>Meta:</h2>

@@ -37,7 +37,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define wayfinder version */
-            $newVersion = '2.1.1-beta4';
+            $newVersion = '2.1.1-rc1';
             $newVersionMajor = '2';
             $name = 'wayfinder';
 

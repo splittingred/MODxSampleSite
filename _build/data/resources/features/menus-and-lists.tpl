@@ -9,10 +9,12 @@ or template. Two of the most widely useful are Ditto and Wayfinder.</p>
 <p>Allows you to template every part of the menu. On this site, Wayfinder is being used to generate the drop-down menus, but many types of
  menus and sitemaps are possible.</p> 
  
-<h2>Ditto - the document lister</h2>
+<h2>getResources - the resource lister</h2>
 <p>Uses include listing the most recent blog posts, producing a site map, listing related documents (using a TV filter) and generating an 
-RSS feed. You could even write a menu with it. On this site, Ditto is being used for the blog posts list on the Blog page, and the list on
- the right of some templates.</p>
+RSS feed. You could even write a menu with it. </p>
+
+<h2>Archivist - automatic archives</h2>
+<p>Archivist automatically creates navigatable archives from your posts. Filter by month, year, or even day!</p>
  
 <h2>Unlimited Customization</h2>
 <p>If you can't quite get your desired effect using templating and the many options of Ditto and Wayfinder, you can write your own routine,

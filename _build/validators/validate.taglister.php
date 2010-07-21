@@ -25,7 +25,7 @@
  * @package modxss
  */
 /**
- * Verify Quip is latest or equal in version
+ * Verify tagLister is latest or equal in version
  *
  * @package modxss
  */
@@ -36,10 +36,10 @@ if ($transport && $transport->xpdo) {
         case xPDOTransport::ACTION_UPGRADE:
             $modx =& $transport->xpdo;
 
-            /* define Quip version */
-            $newVersion = '1.0.0-pl';
+            /* define tagLister version */
+            $newVersion = '1.0.2-rc3';
             $newVersionMajor = '1';
-            $name = 'quip';
+            $name = 'taglister';
 
             /* now loop through packages and check for newer versions
              * Do not install if newer or equal versions are found */
