@@ -11,19 +11,13 @@ preconfigured with a variety of options we hope are helpful, relevant and just p
 	   This can also be turned into a News publishing or PR publishing system. <a href="[[~2]]">View example blog</a>
 	</li>
 	<li>
-	   <strong>Easy Comments.</strong> When logged into your site, your registered site users can comment on your posts. 
+	   <strong>Easy Comments.</strong> Users can comment on your posts easily and simply. Also, you can add moderation, threading, and more.
 	   <a href="[[~6]]">View example</a>
 	</li>
 	<li>
 	   <strong>RSS Feeds.</strong>
        Your site visitors can stay up to date using your site feeds.
        <a href="[[~16]]">View RSS feed</a>
-    </li>
-	<li>
-	   <strong>Automatic User Registration.</strong>
-	   Those that wish to comment on blogs must first create an account. This comes pre-configured with a "Captcha" anti-robot 
-	   registration feature.
-	   <a href="[[~3]]">View registration form</a>
     </li>
 	<li>
 	   <strong>Integrated Site Search.</strong>
