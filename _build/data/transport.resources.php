@@ -473,9 +473,9 @@ $resources[19]->fromArray(array(
 ),'',true,true);
 
 
-$resources[19] = $modx->newObject('modResource');
-$resources[19]->fromArray(array(
-    'id' => 19,
+$resources[20] = $modx->newObject('modResource');
+$resources[20]->fromArray(array(
+    'id' => 20,
     'parent' => 0,
     'template' => 1,
     'pagetitle' => 'Archives',
