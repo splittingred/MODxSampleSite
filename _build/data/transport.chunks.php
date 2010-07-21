@@ -135,5 +135,12 @@ $chunks[14]->fromArray(array(
     'description' => '',
     'snippet' => file_get_contents($sources['data'].'chunks/chunk.mostrecent.tpl'),
 ),'',true,true);
+$chunks[15]= $modx->newObject('modChunk');
+$chunks[15]->fromArray(array(
+    'id' => 15,
+    'name' => 'SearchFormTpl',
+    'description' => '',
+    'snippet' => file_get_contents($sources['data'].'chunks/chunk.searchformtpl.tpl'),
+),'',true,true);
 
 return $chunks;
