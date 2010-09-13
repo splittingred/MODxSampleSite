@@ -77,7 +77,6 @@ $builder->createPackage(PKG_ABBR,PKG_VERSION,PKG_RELEASE);
 $builder->registerNamespace(PKG_ABBR,false,true,'{core_path}components/'.PKG_ABBR.'/');
 
 /* load system settings */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in system settings.'); flush();
 $settings = include_once $sources['data'].'transport.settings.php';
 if (!is_array($settings)) $modx->log(modX::LOG_LEVEL_FATAL,'No settings returned.');
 $attributes= array(
@@ -89,10 +88,10 @@ foreach ($settings as $setting) {
     $vehicle = $builder->createVehicle($setting,$attributes);
     $builder->putVehicle($vehicle);
 }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in '.count($settings).' system settings.'); flush();
 unset($settings,$setting,$attributes);
 
 /* load property sets */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in property sets.'); flush();
 $propertySets = include_once $sources['data'].'propertysets/transport.propertysets.php';
 if (!is_array($propertySets)) $modx->log(modX::LOG_LEVEL_FATAL,'No property sets returned.');
 $attributes= array(
@@ -104,7 +103,23 @@ foreach ($propertySets as $propertySet) {
     $vehicle = $builder->createVehicle($propertySet,$attributes);
     $builder->putVehicle($vehicle);
 }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in '.count($propertySets).' property sets.'); flush();
 unset($propertySets,$propertySet,$attributes);
+
+/* load user groups */
+$usergroups = include_once $sources['data'].'transport.usergroups.php';
+if (!is_array($usergroups)) $modx->log(modX::LOG_LEVEL_FATAL,'No User Groups returned.');
+$attributes= array(
+    xPDOTransport::UNIQUE_KEY => 'name',
+    xPDOTransport::PRESERVE_KEYS => false,
+    xPDOTransport::UPDATE_OBJECT => true,
+);
+foreach ($usergroups as $usergroup) {
+    $vehicle = $builder->createVehicle($usergroup,$attributes);
+    $builder->putVehicle($vehicle);
+}
+$modx->log(modX::LOG_LEVEL_INFO,'Added in '.count($usergroups).' User Groups.'); flush();
+unset($usergroups,$usergroup,$attributes);
 
 /* create category */
 $category= $modx->newObject('modCategory');
@@ -112,40 +127,44 @@ $category->set('id',1);
 $category->set('category',PKG_NAME);
 
 /* add templates */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in templates.'); flush();
 $templates = include $sources['data'].'transport.templates.php';
 if (is_array($templates)) {
     $category->addMany($templates,'Templates');
 } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding templates failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in '.count($templates).' templates.'); flush();
+unset($templates);
 
 /* add chunks */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in chunks.'); flush();
 $chunks = include $sources['data'].'transport.chunks.php';
 if (is_array($chunks)) {
     $category->addMany($chunks,'Chunks');
 } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding chunks failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in '.count($chunks).' chunks.'); flush();
+unset($chunks);
 
 /* add snippets */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in snippets.'); flush();
 $snippets = include $sources['data'].'transport.snippets.php';
 if (is_array($snippets)) {
     $category->addMany($snippets,'Snippets');
 } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding snippets failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in '.count($snippets).' snippets.'); flush();
+unset($snippets);
 
 /* add tvs */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in tvs.'); flush();
 $tvs = include $sources['data'].'transport.tvs.php';
 if (is_array($tvs)) {
     $category->addMany($tvs,'TemplateVars');
 } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding tvs failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in '.count($tvs).' tvs.'); flush();
+unset($tvs);
 
 /* add subpackages */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in subpackages.'); flush();
 $success = include $sources['data'].'transport.subpackages.php';
 if (!$success) { $modx->log(modX::LOG_LEVEL_FATAL,'Adding subpackages failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in subpackages.'); flush();
+unset($success);
 
 /* load resources */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in Resources.'); flush();
 $resources = include_once $sources['data'].'transport.resources.php';
 if (!is_array($resources)) $modx->log(modX::LOG_LEVEL_FATAL,'No resources returned.');
 $attributes= array(
@@ -165,6 +184,7 @@ foreach ($resources as $resource) {
     $vehicle = $builder->createVehicle($resource,$attributes);
     $builder->putVehicle($vehicle);
 }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in '.count($resources).' Resources.'); flush();
 unset($resources,$resource,$attributes);
 
 /* create base category vehicle */
