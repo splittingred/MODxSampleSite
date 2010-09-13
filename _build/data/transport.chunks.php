@@ -143,4 +143,13 @@ $chunks[15]->fromArray(array(
     'snippet' => file_get_contents($sources['data'].'chunks/chunk.searchformtpl.tpl'),
 ),'',true,true);
 
+
+$chunks[16]= $modx->newObject('modChunk');
+$chunks[16]->fromArray(array(
+    'id' => 16,
+    'name' => 'ContactFormReport',
+    'description' => '',
+    'snippet' => file_get_contents($sources['data'].'chunks/chunk.contactformreport.tpl'),
+),'',true,true);
+
 return $chunks;

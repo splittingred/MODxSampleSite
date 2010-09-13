@@ -2,6 +2,7 @@
   &hooks=`spam,email,redirect`
   &emailTpl=`ContactFormReport`
   &emailTo=`[[++emailsender]]`
+  &emailUseFieldForSubject=`1`
   &redirectTo=`15`
   &submitVar=`submitContact`
 ]]
@@ -25,7 +26,7 @@
         <label for="cfRegarding">Regarding:
             <span class="invalidValue">[[+fi.error.regarding]]</span>
         </label>        
-        <select name="subject:required" id="cfRegarding">
+        <select name="subject" id="cfRegarding">
             <option value="General Inquiries">General Inquiries</option>
             <option value="Press">Press or Interview Request</option>
             <option value="Partnering">Partnering Opportunities</option>
