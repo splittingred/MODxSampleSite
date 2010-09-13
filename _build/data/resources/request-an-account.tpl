@@ -1,5 +1,6 @@
-[[!Register? &usergroups=`Registered Users` &successMsg=`<p class="message">Signup completed successfully!<br />
-Your account was created. A copy of your signup information was sent to your email address.</p>`]]
+[[!Register? &usergroups=`Registered Users` 
+    &successMsg=`<p class="message">Signup completed successfully!<br />Your account was created. A copy of your signup information was sent to your email address.</p>`
+    &submitVar=`cmdwebsignup`]]
 
 <!-- login form section-->
 <form id="websignupfrm" method="post" name="websignupfrm" action="[[~[[*id]]]]">
@@ -8,7 +9,7 @@ Your account was created. A copy of your signup information was sent to your ema
         <p>Items marked by * are required</p>
         <label for="su_username">
             User name:*
-            <input type="text" name="username" id="su_username" class="inputBox" size="20" maxlength="30" value="[[+username]]" />
+            <input type="text" name="username:required" id="su_username" class="inputBox" size="20" maxlength="30" value="[[+username]]" />
         </label>
         <label for="fullname">
             Full name: 
@@ -16,7 +17,7 @@ Your account was created. A copy of your signup information was sent to your ema
         </label>
         <label for="email">
             Email address:* 
-            <input type="text" name="email" id="email" class="inputBox" size="20" value="[[+email]]" />
+            <input type="text" name="email:required" id="email" class="inputBox" size="20" value="[[+email]]" />
         </label>
     </fieldset>
     
@@ -24,11 +25,7 @@ Your account was created. A copy of your signup information was sent to your ema
         <h3>Password</h3>
         <label for="su_password">
             Password:* 
-            <input type="password" name="password" id="su_password" class="inputBox" size="20" />
-        </label>
-        <label for="confirmpassword">
-            Confirm password:* 
-            <input type="password" name="confirmpassword" id="confirmpassword" class="inputBox" size="20" />
+            <input type="password" name="password:required" id="su_password" class="inputBox" size="20" />
         </label>
     </fieldset>
     
@@ -278,16 +275,7 @@ Your account was created. A copy of your signup information was sent to your ema
             <option value="239">Zimbabwe</option>
         </select>
     </fieldset>
-    
-    <fieldset>
-        <h3>Bot-Patrol</h3>
-        <p>Enter the word/number combination shown in the image below.</p>
-        <p><a href="[[~[[*id]]]]">
-            <img align="top" src="manager/includes/veriword.php" width="148" height="60" alt="If you have trouble reading the code, click on the code itself to generate a new random code." style="border: 1px solid #039" />
-        </a></p>
-        <label>Form code:* <input type="text" name="formcode" class="inputBox" size="20" /></label>
-    </fieldset>
-    
+        
     <fieldset>
         <input type="submit" value="Submit" name="cmdwebsignup" />
     </fieldset>

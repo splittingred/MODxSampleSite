@@ -39,15 +39,15 @@ set_time_limit(0);
 /* set package defines */
 define('PKG_ABBR','modxss');
 define('PKG_NAME','MODx Sample Site');
-define('PKG_VERSION','1.0');
-define('PKG_RELEASE','beta1');
+define('PKG_VERSION','1.0.0');
+define('PKG_RELEASE','rc1');
 
 /* override with your own defines here (see build.config.sample.php) */
 require_once dirname(__FILE__) . '/build.config.php';
 require_once MODX_CORE_PATH . 'model/modx/modx.class.php';
 require_once dirname(__FILE__). '/includes/functions.php';
 
-$modx= new modX();
+/* setup sources */
 $root = dirname(dirname(__FILE__)).'/';
 $assets = MODX_ASSETS_PATH.'components/'.PKG_ABBR.'/';
 $sources= array (
@@ -64,6 +64,8 @@ $sources= array (
 );
 unset($root);
 
+/* load modx */
+$modx= new modX();
 $modx->initialize('mgr');
 echo '<pre>';
 $modx->setLogLevel(modX::LOG_LEVEL_INFO);

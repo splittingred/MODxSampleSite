@@ -37,7 +37,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define getResources version */
-            $newVersion = '1.0.0-pl';
+            $newVersion = '1.1.0-pl';
             $newVersionMajor = '1';
             $name = 'getresources';
 

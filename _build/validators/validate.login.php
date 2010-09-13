@@ -37,7 +37,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define Login version */
-            $newVersion = '1.0.3-rc1';
+            $newVersion = '1.1.0-rc2';
             $newVersionMajor = '1';
             $name = 'login';
 

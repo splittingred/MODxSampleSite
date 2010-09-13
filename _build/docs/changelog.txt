@@ -2,6 +2,10 @@ Changelog for MODx Sample Site.
 
 MODxSS 1.0
 ====================================
+- Updated subpackages to latest versions
+- [#7] Fixed bug with logout link
+- [#5] [#3] Fixed bugs with contact form, request acct form
+- [#1] Fixed archives display with caching
 - Updated to Revo 2.0.0-pl standards
 - Added license information, adjusted template, prepared for release 
 - Updated Quip to latest version

@@ -33,7 +33,7 @@
 
         <label for="cfMessage">Message: 
             <span class="invalidValue">[[+fi.error.message]]</span>
-        <textarea name="message:required" id="cfMessage" rows="4" cols="20" value="[[+fi.message]]"></textarea>
+            <textarea name="message:required:stripTags" id="cfMessage" rows="4" cols="20">[[+fi.message]]</textarea>
         </label>
 
         <label>&nbsp;</label><input type="submit" name="submitContact" id="cfContact" class="button" value="Send This Message" />

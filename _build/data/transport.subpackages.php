@@ -6,13 +6,13 @@
  */
 $subpackages = array(
     'archivist'      => 'archivist-1.0.0-pl',
-    'formit'         => 'formit-1.1.6-rc1',
-    'getpage'        => 'getpage-1.0.0-beta2',
-    'getresources'   => 'getresources-1.0.0-ga',
-    'login'          => 'login-1.0.3-rc1',
-    'quip'           => 'quip-1.0.0-pl',
-    'simplesearch'   => 'simplesearch-1.0.0-beta3',
-    'taglister'      => 'taglister-1.0.2-rc3',
+    'formit'         => 'formit-1.2.1-pl',
+    'getpage'        => 'getpage-1.0.0-pl',
+    'getresources'   => 'getresources-1.1.0-pl',
+    'login'          => 'login-1.1.0-rc2',
+    'quip'           => 'quip-1.1.1-pl',
+    'simplesearch'   => 'simplesearch-1.0.0-pl',
+    'taglister'      => 'taglister-1.1.0-rc1',
     'ultimateparent' => 'ultimateparent-1.4-pl',
     'wayfinder'      => 'wayfinder-2.1.1-rc1',
 );

@@ -1,13 +1,13 @@
 <h3>Install Successful!</h3>
 
-<p>You have successfully installed and configured MODx. We hope you find this site an adequate starting configuration for many 
-small business, organization or personal websites; just change the template and content, and you'll be good to go! This site is 
+<p>You have successfully installed and configured MODx. We hope you find this site an adequate starting configuration for many
+small business, organization or personal websites; just change the template and content, and you'll be good to go! This site is
 preconfigured with a variety of options we hope are helpful, relevant and just plain cool for many marketing or personal sites:</p>
 
 <ul>
 	<li>
 	   <strong>Simple Blog.</strong>
-	   When logged into your site, you'll be able to create new entries from the front end. 
+	   When logged into your site, you'll be able to create new entries from the front end.
 	   This can also be turned into a News publishing or PR publishing system. <a href="[[~2]]">View example blog</a>
 	</li>
 	<li>
@@ -33,8 +33,8 @@ preconfigured with a variety of options we hope are helpful, relevant and just p
 	    Help visitors who go astray to find what they're looking for. <a href="[[~4]]">View 404 page</a>
     </li>
 	<li>
-	   <strong>Contact Us form.</strong> 
-	   A highly configurable contact form you <em>should</em> customize to point to the right email address. 
+	   <strong>Contact Us form.</strong>
+	   A highly configurable contact form you <em>should</em> customize to point to the right email address.
 	   Comes pre-configured to prevent mail-form-injection so your site does <em>not</em> become a source for spam.
 	   <a href="[[~14]]">View form</a>
 	</li>

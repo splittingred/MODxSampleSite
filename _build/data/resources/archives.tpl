@@ -9,6 +9,7 @@
   &includeTVs=`1`
   &toPlaceholder=`archives`
   &limit=`10`
+  &cache=`0`
 ]]
 
 <h3>[[+arc_month_name]] [[+arc_year]] Archives</h3>

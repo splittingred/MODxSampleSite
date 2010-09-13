@@ -37,7 +37,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define tagLister version */
-            $newVersion = '1.0.2-rc3';
+            $newVersion = '1.1.0-rc1';
             $newVersionMajor = '1';
             $name = 'taglister';
 

@@ -37,7 +37,7 @@ if ($transport && $transport->xpdo) {
             $modx =& $transport->xpdo;
 
             /* define Archivist version */
-            $newVersion = '1.0.0-beta3';
+            $newVersion = '1.0.0-pl';
             $newVersionMajor = '1';
             $name = 'simplesearch';
 
